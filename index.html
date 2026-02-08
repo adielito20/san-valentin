@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Ti ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fuente elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(120deg, #ff758c, #ff7eb3);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Fondo animado */
+    .hearts span {
+      position: absolute;
+      bottom: -50px;
+      font-size: 24px;
+      animation: float 10s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 50px 40px;
+      border-radius: 25px;
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 2s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background: #ff0033;
+      color: white;
+    }
+
+    .yes:hover {
+      transform: scale(1.1);
+      background: #e6002e;
+    }
+
+    .no {
+      background: white;
+      color: #ff0033;
+      position: relative;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corazones animados -->
+  <div class="hearts"></div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Hola mi amor ❤️</h1>
+      <p>
+        Desde que llegaste a mi vida,<br>
+        todo se volvió más bonito, más tranquilo y más feliz.
+      </p>
+      <h2>¿Quieres ser mi San Valentín? 🌹</h2>
+
+      <div class="buttons">
+        <button class="yes" onclick="yesClick()">Sí 💖</button>
+        <button class="no" id="noBtn">No 😢</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>Hecho con amor solo para ti ✨</footer>
+
+  <script>
+    // Corazones flotando
+    const heartsContainer = document.querySelector('.hearts');
+    const heartEmojis = ['❤️','💖','💕','💘'];
+
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+      heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }, 300);
+
+    // Botón sí
+    function yesClick() {
+      alert('Te amo ❤️ Gracias por decir que sí');
+    }
+
+    // Botón no que se escapa 😂
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('mouseover', () => {
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = Math.random() * 70 + '%';
+      noBtn.style.top = Math.random() * 70 + '%';
+    });
+  </script>
+
+</body>
+</html>
