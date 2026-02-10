@@ -5,7 +5,6 @@
   <title>Para Ti ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fuente elegante -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
@@ -22,11 +21,10 @@
       overflow: hidden;
     }
 
-    /* Fondo animado */
+    /* ❤️ Corazones */
     .hearts span {
       position: absolute;
-      bottom: -50px;
-      font-size: 24px;
+      bottom: -40px;
       animation: float 10s linear infinite;
       opacity: 0.8;
     }
@@ -34,7 +32,33 @@
     @keyframes float {
       0% { transform: translateY(0) scale(1); opacity: 0; }
       10% { opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+      100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+    }
+
+    /* 🌸 Imágenes flotantes */
+    .floating-img {
+      position: absolute;
+      width: 50px;
+      opacity: 0;
+      animation: scatter 6s ease-in-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes scatter {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.2) translate(
+          calc(-150px + 300px * random()),
+          calc(-200px - 300px * random())
+        );
+      }
     }
 
     .container {
@@ -44,20 +68,19 @@
       align-items: center;
       text-align: center;
       color: white;
-      padding: 20px;
       position: relative;
       z-index: 10;
+      padding: 20px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(12px);
       padding: 50px 40px;
       border-radius: 25px;
-      max-width: 500px;
-      width: 100%;
+      max-width: 520px;
       animation: fadeIn 2s ease;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
     }
 
     @keyframes fadeIn {
@@ -67,7 +90,7 @@
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 40px;
+      font-size: 38px;
       margin-bottom: 15px;
     }
 
@@ -90,7 +113,7 @@
     }
 
     button {
-      padding: 15px 30px;
+      padding: 15px 32px;
       font-size: 18px;
       border: none;
       border-radius: 30px;
@@ -105,7 +128,6 @@
 
     .yes:hover {
       transform: scale(1.1);
-      background: #e6002e;
     }
 
     .no {
@@ -116,17 +138,16 @@
 
     footer {
       position: absolute;
-      bottom: 20px;
+      bottom: 15px;
       width: 100%;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
       opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <!-- Corazones animados -->
   <div class="hearts"></div>
 
   <div class="container">
@@ -134,7 +155,7 @@
       <h1>Hola mi amor ❤️</h1>
       <p>
         Desde que llegaste a mi vida,<br>
-        todo se volvió más bonito, más tranquilo y más feliz.
+        todo es más bonito y más real.
       </p>
       <h2>¿Quieres ser mi San Valentín? 🌹</h2>
 
@@ -148,27 +169,45 @@
   <footer>Hecho con amor solo para ti ✨</footer>
 
   <script>
-    // Corazones flotando
-    const heartsContainer = document.querySelector('.hearts');
+    /* ❤️ Corazones */
+    const hearts = document.querySelector('.hearts');
     const heartEmojis = ['❤️','💖','💕','💘'];
 
     setInterval(() => {
-      const heart = document.createElement('span');
-      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
-      heart.style.fontSize = (20 + Math.random() * 20) + 'px';
-      heartsContainer.appendChild(heart);
+      const h = document.createElement('span');
+      h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (18 + Math.random() * 25) + 'px';
+      h.style.animationDuration = (6 + Math.random() * 5) + 's';
+      hearts.appendChild(h);
+      setTimeout(() => h.remove(), 10000);
+    }, 350);
 
-      setTimeout(() => heart.remove(), 10000);
-    }, 300);
+    /* 🖼️ Imágenes flotantes */
+    const images = [
+      'images/img1.png',
+      'images/img2.png',
+      'images/img3.png'
+    ];
 
-    // Botón sí
+    setInterval(() => {
+      const img = document.createElement('img');
+      img.src = images[Math.floor(Math.random() * images.length)];
+      img.className = 'floating-img';
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.top = (60 + Math.random() * 30) + 'vh';
+      img.style.width = (30 + Math.random() * 40) + 'px';
+      document.body.appendChild(img);
+
+      setTimeout(() => img.remove(), 6000);
+    }, 2000);
+
+    /* 💖 Botón sí */
     function yesClick() {
       alert('Te amo ❤️ Gracias por decir que sí');
     }
 
-    // Botón no que se escapa 😂
+    /* 😂 Botón no escapa */
     const noBtn = document.getElementById('noBtn');
     noBtn.addEventListener('mouseover', () => {
       noBtn.style.position = 'absolute';
